@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>BHC | {% if slug == 'All' %}Bütün Məhsullar{% else %}{{slug}}{% endif %}</title>{% endblock %}
+
+{% block style %}
+<style>
+	.linkli:active{
+		border: 0px!important;
+		background-color: #b3cc23;
+		color: white;
+	}
+	.allprdl{
+		color: white!important; 
+		background-color:#0f2e07;
+		border-color: #0f2e07!important;
+		opacity: 0.8;
+	}
+	.parentcat{
+		color: white!important; 
+		background-color:#5d721a;
+		border-color: #5d721a;
+
+	}
+</style>
+{% endblock %}
+{% block content %}
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Təbİİ və ORQANİK</p>
+						{% if slug == 'All' %}
+						<h1>Bütün Məhsullar</h1>
+						{% else %}
+						<h1>{{slug}}</h1>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- products -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="product-filters">
+                        <ul>
+							{% if slug == 'All' %}
+                            <li class="active">Hamısı</li><br>
+							{% for category in categories %}
+                            <a style="color: rgb(255, 255, 255);" href="{% url 'product:products-list' category_path=category.get_absolute_url %}"><li  class="linkli" >{{category.title}}</li></a>
+							{% endfor %}
+							{% else %}
+                            <a style="color: white;" href="{% url 'product:products-list' category_path='all' %}"><li class="allprdl linkli">Hamısı</li></a><br>
+							<li class="parentcat active" data-filter="*">{{slug}}</li><br>
+							{% for category in child_categories %}
+                            <li data-filter=".{{category.slug}}">{{category.title}}</li>
+							{% endfor %}
+							{% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row product-lists">
+				{% for product in products %}
+				<div class="col-lg-4 col-md-6 text-center {{product.category.slug}}">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="{% url 'product:product-detail' category_path=product.category.get_absolute_url slug=product.slug %}"><img src="{{product.get_img}}" alt=""></a>
+						</div>
+						<h3>{{product.title}}</h3>
+						<p class="product-price"> {{product.price}} <i class="font-weight-bold fas fa-xs fa-solid fa-manat-sign"></i></p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Səbətə Əlavə et</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							<li><a href="#">Prev</a></li>
+							<li><a href="#">1</a></li>
+							<li><a class="active" href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end products -->
+{% endblock %}
+
+
+
+

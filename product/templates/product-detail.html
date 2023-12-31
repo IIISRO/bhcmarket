@@ -1,0 +1,247 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>BHC | {{product.title}}</title>{% endblock %}
+
+{% block style %}
+<style>
+.product-count {
+  margin-bottom: 10px;
+  display: flex;
+ 
+}
+
+.product-count a {
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+
+.button-count {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  background-color: #B3CC23;
+  color: white;
+  font-size: 17px;
+  line-height: 30px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+.button-count:first-child{
+	border-top-left-radius: 100%;
+	border-bottom-left-radius: 100%;
+}
+
+.button-count:last-child{
+	border-top-right-radius: 100%;
+	border-bottom-right-radius: 100%;
+}
+.button-count:active {
+  background-color: #5d721a;
+}
+.button-count:focus{
+	outline: none!important;
+
+}
+.number-product {
+  width: 45px;
+  height: 25px;
+  font-size: 13pt;
+  border: none;
+  text-align: center;
+}
+
+:disabled {
+  background-color: silver;
+}
+
+</style>
+<link rel="stylesheet" href="{% static 'css/slick-1.9.0.css' %}">
+<link rel="stylesheet" href="{% static 'css/product-detal-slider.css' %}">
+
+{% endblock %}
+{% block content %}
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Ətraflı bax</p>
+						<h1>{{product.title}}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+						<div class="wrapper">
+
+							<div class="product-gallery carousel-wrapper">
+								<div class="carousel slick-outer slick-minimal" data-slick='{
+									"dots": true,
+									"lazyLoad": "ondemand",
+									"fade": true,
+									"prevArrow": "<span class=\"slick-prev\"><svg class=\"slick-arrow\" viewBox=\"351 327.999 18.856 65.001\"><path d=\"M366.071,391.906l-14.649-28.855c-0.09-0.175-0.152-0.361-0.187-0.554l-0.204-1.146,c-0.04-0.223-0.042-0.449-0.005-0.673l0.188-1.146c0.031-0.195,0.092-0.384,0.179-0.561l14.668-29.854,c0.488-0.992,1.686-1.402,2.677-0.913c0.992,0.487,1.4,1.686,0.913,2.677l-14.537,29.588l-0.083,0.515l0.092,0.519l14.518,28.593,c0.5,0.983,0.106,2.188-0.878,2.688c-0.29,0.148-0.6,0.217-0.904,0.217C367.129,393,366.426,392.602,366.071,391.906z\"/></svg></span>",
+									"nextArrow": "<span class=\"slick-next\"><svg class=\"slick-arrow\" viewBox=\"351 327.999 18.856 65.001\"><path d=\"M352.999,393c-0.305,0-0.614-0.068-0.904-0.217c-0.984-0.5-1.378-1.704-0.878-2.688l14.518-28.593,l0.092-0.519l-0.083-0.515l-14.537-29.588c-0.487-0.991-0.079-2.19,0.913-2.677c0.991-0.489,2.188-0.079,2.677,0.913l14.668,29.854,c0.087,0.177,0.147,0.366,0.179,0.561l0.188,1.146c0.037,0.224,0.035,0.45-0.005,0.673l-0.204,1.146,c-0.034,0.192-0.097,0.379-0.187,0.554l-14.649,28.855C354.431,392.602,353.728,393,352.999,393z\"/></svg></span>"
+									}'>
+									{% for image in images %}
+									<div>
+										<img src="{{image.image.url}}" class="slide-image" />
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						
+						</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{product.title}}</h3>
+						<p class="single-product-pricing">{{product.price}} <i class="font-weight-bold fas fa-xs fa-solid fa-manat-sign"></i></p>
+						<hr>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
+						<hr>
+						<div class="single-product-form">
+							<form action="index.html">
+								<label for="">Sayı:</label>
+								<div class="product-count">
+									<div style="display: flex; align-items: center; padding: 0%; border-radius: 30px; border: 1px solid #5d721a57;">
+
+										<button onclick=" decreaseCount()" type="button" class="font-weight-bold button-count no-active" disabled>-</button>
+										<input type="text" id="number-product" class="number-product" value="1">
+										<button onclick="increaseCount()" type="button" class="font-weight-bold button-count">+</button>
+									</div>
+								</div>
+							</form>
+							
+							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Səbətə Əlavə et</a>
+							<hr>
+							<p><strong>Kateqoriyaları: </strong>{{prod_detail_cats}}</p>
+							<div class="p-2">{{product.detail|safe}}</div>
+
+						</div>
+						<hr>
+						<h4>Paylaş:</h4>
+						<ul class="product-share">
+							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end single product -->
+
+	<!-- more products -->
+	<div class="more-products mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="section-title">	
+						<h3><span class="orange-text">Bənzər</span> Məhsullar</h3>
+						<p>Təbii və Orqanik süfrənizi digər sağlam məhsullarımız ilə zənginləşdirin!</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{% static 'img/products/product-img-1.jpg' %}" alt=""></a>
+						</div>
+						<h3>Strawberry</h3>
+						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{% static 'img/products/product-img-2.jpg' %}" alt=""></a>
+						</div>
+						<h3>Berry</h3>
+						<p class="product-price"><span>Per Kg</span> 70$ </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{% static 'img/products/product-img-3.jpg' %}" alt=""></a>
+						</div>
+						<h3>Lemon</h3>
+						<p class="product-price"><span>Per Kg</span> 35$ </p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end more products -->
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/slick-1.9.0.min.js' %}"></script>
+<script>
+	$(document).ready(function(){
+	$('.carousel').slick();
+});
+	var num;
+	function decreaseCount(){
+		num = parseInt($('#number-product').val());
+		if (num > 1) {
+			$('#number-product').val(num - 1);
+		}
+		if (num == 2) {
+			$('.button-count:first-child').prop('disabled', true);
+		}
+		// if (num == 10) {
+		// 	$('.button-count:last-child').prop('disabled', false);
+		// }
+	}
+	function increaseCount(){
+		num = parseInt($('#number-product').val());
+		$('#number-product').val(num + 1);
+		// if (num < 10) {
+		// }
+		if (num >= 1) {
+			$('.button-count:first-child').prop('disabled', false);
+		}
+		// if (num == 9) {
+		// 	$('.button-count:last-child').prop('disabled', true);
+		// }
+	}
+	$('#number-product').on('input',function(event){
+		let price = event.target.value
+		price = price.replace(/[^0-9]/g, '');
+		event.target.value = price
+		let num = parseInt($('#number-product').val());
+		if(num === 0 || isNaN(num)||event.target.value.substring(0,1)==0){
+			event.target.value = 1
+		}else if(num >= 1){
+			$('.button-count:first-child').prop('disabled', false);
+		}
+		if(event.target.value == 1){
+			$('.button-count:first-child').prop('disabled', true);
+		}
+	})
+
+
+
+</script>
+{% endblock %}

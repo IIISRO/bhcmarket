@@ -1,0 +1,192 @@
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+
+button {
+  outline: none;
+}
+
+/* ==========================================================================
+   1. General
+   ========================================================================== */
+.wrapper {
+  min-width: 320px;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   2. Product Gallery
+   ========================================================================== */
+.product-gallery {
+  display: block;
+  width: 100%;
+}
+@media screen and (min-width: 601px) {
+  .product-gallery {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .product-gallery {
+    display: inline-block;
+    width: 64.1%;
+  }
+}
+@media screen and (min-width: 991px) {
+  .product-gallery {
+    width: 100%;
+  }
+}
+.product-gallery .slide-image {
+  background: #f9f9f9;
+}
+
+/* ==========================================================================
+   3. Slick Slider
+   ========================================================================== */
+.slick-list .slick-track .slick-slide img {
+  width: 100%;
+  margin: 0 auto;
+}
+.slick-list.draggable {
+  cursor: url("../image/swipe-cursor.png"), default !important;
+}
+.slick-list.draggable:before {
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: block;
+  margin: 0 auto 10px;
+  content: "←     →";
+  text-align: center;
+  letter-spacing: 0.9%;
+  color: #686868;
+}
+@media screen and (min-width: 769px) {
+  .slick-list.draggable:before {
+    display: none;
+  }
+}
+
+/* Navigation Controls
+   ========================================================================== */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.slick-prev .slick-arrow,
+.slick-next .slick-arrow {
+  margin-top: -50px;
+  display: block;
+  width: 20px;
+  margin: 0 auto;
+  fill: #5d721a;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.slick-prev:hover .slick-arrow,
+.slick-next:hover .slick-arrow {
+  fill: #b3cc23;
+}
+@media screen and (max-width: 600px) {
+  .slick-prev,
+.slick-next {
+    display: none !important;
+  }
+}
+
+.slick-prev {
+  left: 0;
+}
+
+.slick-next {
+  right: 0;
+}
+
+/* Position Indicators
+   ========================================================================== */
+.slick-dots {
+  text-align: center;
+  font-size: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 15px;
+}
+.slick-dots li {
+  display: inline-block;
+  margin: 0 1.5%;
+}
+.slick-dots li button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border-width: 0;
+  border-radius: 50%;
+  background: #5d721a;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.slick-dots li button:hover {
+  background: #000;
+}
+.slick-dots li.slick-active button {
+  background: #b3cc23;
+}
+
+/* Slick Minimal: Hide the Prev & Next arrows until hover
+   ========================================================================== */
+.slick-minimal .slick-prev,
+.slick-minimal .slick-next {
+  transition: 0.2s opacity;
+  opacity: 0;
+}
+.slick-minimal:hover .slick-prev,
+.slick-minimal:hover .slick-next {
+  opacity: 1;
+}
+
+/* Slick Outer: Move dot-indicators and arrows outside of slider
+   ========================================================================== */
+.slick-outer .slick-prev {
+  left: -50px;
+}
+.slick-outer .slick-next {
+  right: -50px;
+}
+.slick-outer .slick-dots {
+  position: relative;
+  bottom: inherit;
+  margin-top: 15px;
+}
+
+/* Slick Minimal & Slick Outer: Combined, will add movement effects to arrows
+   ========================================================================== */
+.slick-minimal.slick-outer .slick-next,
+.slick-minimal.slick-outer .slick-prev {
+  transition: 0.2s all;
+}
+.slick-minimal.slick-outer .slick-prev {
+  left: -20px;
+}
+.slick-minimal.slick-outer .slick-next {
+  right: -20px;
+}
+.slick-minimal.slick-outer:hover .slick-prev {
+  left: -50px;
+}
+.slick-minimal.slick-outer:hover .slick-next {
+  right: -50px;
+}
